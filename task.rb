@@ -90,7 +90,7 @@ def pay(task)
         begin
         line = f.gets
 
-        if "#{line}".include?"successfully"
+        if "#{line}".include?"applied"
             @status = "finish"
         end
 
@@ -105,7 +105,16 @@ def pay(task)
 end
 
 
-if paying_count == 0
-    # 如果没有正在支付的
-    pay(get_wait_one)
+
+
+def looping_task
+    sleep(5)
+    if paying_count == 0
+        # 如果没有正在支付的
+        if get_wait_one != nil
+            pay(get_wait_one)
+        end
+    end
+    looping_task
 end
+looping_task
