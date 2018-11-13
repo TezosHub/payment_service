@@ -90,7 +90,7 @@ def pay(task)
         begin
         line = f.gets
 
-        if line.include?"successfully"
+        if "#{line}".include?"successfully"
             @status = "finish"
         end
 
