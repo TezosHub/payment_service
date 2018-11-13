@@ -70,6 +70,7 @@ def get_wait_one
 end
 
 def pay(task)
+    time = task[:time]
     # 生成配置信息
     make_public_keys
     make_secret_keys
@@ -82,17 +83,23 @@ def pay(task)
     to = task[:address]
     fee = task[:fee]
     sh = "tezos-client transfer #{amount} from #{from} to #{to} --fee #{fee};"
+
+
+    @status = "filed"
     IO.popen(sh) do |f|
         begin
         line = f.gets
 
-        # if line.include?""
-            
-        # end
+        if line.include?"successfully"
+            @status = "finish"
+        end
 
         puts "\n#{line}"
         end while line!=nil
     end
+
+    sql = "update task set `status` = '#{@status}' where `time` = '#{time}'"
+    conn.execute( sql )
     #删除配置信息
     clear_keys
 end

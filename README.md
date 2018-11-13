@@ -11,3 +11,11 @@ CREATE TABLE `task` (
 	`status`	INTEGER DEFAULT 'wait'
 );
 ```
+
+```
+apt install sqlite3 libsqlite3-dev
+```
+
+```
+gem install sqlite3
+```
