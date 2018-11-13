@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title><%=@title%></title>
+    <style>
+        body{
+            text-align:center;
+        }
+        form{
+            background:#ccc;
+            padding:10px;
+            width:90%;
+            max-width:600px;
+            text-align:left;
+            margin:20px auto;
+        }
+        table, th, td{
+            border-collapse: collapse;
+
+            font-size: 14px;
+
+            
+
+            padding: 10px;
+
+            font-weight: lighter;
+
+            
+        }
+        table{
+            width:90%;
+            max-width:600px;
+            text-align:left;
+        }
+        .first{
+            width:10%;
+            min-width:100px;
+        }
+        .text{
+            width:90%;
+            border:none;
+            border: solid 2px #ccc;
+            padding:5px;
+        }
+    </style>
+</head>
+<body>
+<h2>Tezos 手动打款 API</h2>
+
+说明：提交后，会返回一个ID。
+<form method="post" action="/payment" target="_blank">
+    <table>
+        <tr>
+            <th class="first">姓名</th>
+            <th><input class="text" name="name" value="<%=@name%>" placeholder="姓名（可随意填写）"></th>
+        </tr>
+        <tr>
+            <th class="first">收款地址</th>
+            <th><input class="text" name="address" value="<%=@address%>" placeholder="打款地址"></th>
+        </tr>
+        <tr>
+            <th class="first">打款金额</th>
+            <th><input class="text" name="amount" value="<%=@amount%>" placeholder="打款金额"></th>
+        </tr>
+        <tr>
+            <th class="first">手续费</th>
+            <th><input class="text" name="fee" value="<%=@fee%>" placeholder="手续费"></th>
+        </tr>
+    </table>
+    <input type="submit" value="支付">
+</form>
+
+<h2>打款状态查询</h2>
+
+<p><a href="/tasks" target="_blank">查看全部</a></p>
+
+填入 ID ，查询状态
+
+<form method="post" action="/status" target="_blank">
+    <table>
+        <tr>
+            <th class="first">ID</th>
+            <th><input name="id" class="text" value="" placeholder="填写ID，查询"></th>
+        </tr>
+    </table>
+    <input type="submit" value="查询">
+</form>
+
+<h2></h2>
+
+<p><b>说明：</b>本Ruby示例对Tezos转账命令进行封装，提供了一个转账任务状态机。</p>
+<p>只能用来做打款调试，因接口没有进行权限验证，无法保证支付安全，故而不能用于生产环境。</p>
+<p>github: <a href="https://github.com/TezosHub/payment_service" target="_blank">https://github.com/TezosHub/payment_service</a></p>
+</body>
+</html>

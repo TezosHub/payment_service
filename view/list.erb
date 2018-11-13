@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title><%=@title%></title>
+    <style>
+        body{
+            text-align:center;
+        }
+        table, th, td{
+            border-collapse: collapse;
+            font-size: 14px;
+            padding: 10px;
+            font-weight: lighter;
+            border:none;
+            border: solid 2px #ccc;
+            padding:5px;
+            margin:20px auto;
+        }
+        table{
+            width:90%;
+            max-width:600px;
+            text-align:left;
+        }
+        .first{
+            width:10%;
+            min-width:100px;
+        }
+    </style>
+</head>
+<body>
+<h2>Tezos 打款任务列表</h2>
+
+<table>
+    <tr>
+        <th class="first">id</th>
+        <th>time</th>
+        <th>address</th>
+        <th>amount</th>
+        <th>fee</th>
+        <th>status</th>
+    </tr>
+    <%for item in @items%>
+    <tr>
+        <th class="first"><%=item[:id]%></th>
+        <th><%=item[:time]%></th>
+        <th><a href="https://alphanet.tzscan.io/<%=item[:address]%>" target="_blank"><%=item[:address]%></a></th>
+        <th><%=item[:amount]%></th>
+        <th><%=item[:fee]%></th>
+        <th><%=item[:status]%></th>
+    </tr>
+    <%end%>
+</table>
+
+
+<p><b>说明：</b>本Ruby示例对Tezos转账命令进行封装，提供了一个转账任务状态机。</p>
+<p>只能用来做打款调试，因接口没有进行权限验证，无法保证支付安全，故而不能用于生产环境。</p>
+<p>github: <a href="https://github.com/TezosHub/payment_service" target="_blank">https://github.com/TezosHub/payment_service</a></p>
+</body>
+</html>
