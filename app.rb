@@ -18,7 +18,7 @@ get '/' do
 end
 
 get '/tasks' do
-    @title = "tezos 打款人物列表"
+    @title = "tezos 打款任务列表"
     sql = "select * from `task`;"
     @items = []
     conn.execute( sql ) do |row|
